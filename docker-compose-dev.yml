@@ -11,7 +11,8 @@ services:
     # このフォルダにDockerファイルを置く
     build:
         context: .
-        dockerfile: ./docker/Dockerfile
+        dockerfile: ./Dockerfile
+        #dockerfile: ./docker/Dockerfile
         #dockerfile: ./docker_srv/Dockerfile.local.dev
 
     # DEV UWSGI起動
@@ -37,8 +38,8 @@ services:
       - 80:80
     
     # ローカルフォルダとコンテナ内のマウントディレクトリの関連づけ
-    volumes:
-      - ./projects:/projects
+    # volumes:
+    #  - ./projects:/projects
     # PORT開放
     expose:
       - "80"

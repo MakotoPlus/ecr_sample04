@@ -1,7 +1,6 @@
 FROM python:3.8
 USER root
 
-
 ENV DOCKER_DIR="./docker"
 ENV COPY_SOURCE_DIR="./projects"
 ENV SOURCE_DIR="./projects"
