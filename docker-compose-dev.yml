@@ -1,0 +1,45 @@
+version: '3'
+
+#
+# 開発用
+services:
+  ecr-sample04:
+    # os起動時(Docker起動時)にコンテナを再起動さる場合
+    # restart: always
+    
+    # ComposeFileを実行しビルドされるときのルートパス
+    # このフォルダにDockerファイルを置く
+    build:
+        context: .
+        dockerfile: ./docker/Dockerfile
+        #dockerfile: ./docker_srv/Dockerfile.local.dev
+
+    # DEV UWSGI起動
+    # command: uwsgi --socket :8001 --chdir /workspace/deposit_srv --wsgi-file deposit_srv/wsgi.py
+    # PROD UWSGI起動
+    #command: uwsgi --socket :8001 --chdir /workspace/deposit_srv --wsgi-file env/wsgi.py --master --processes 4 --threads 2
+    # Django 単独起動
+    #command: python manage.py runserver 0.0.0.0:8000 --settings env.settings_master
+    #command: python manage.py runserver  0.0.0.0:8001
+
+    # Hostname
+    hostname: django_004
+
+    # コンテナ名
+    container_name: 'ecr-sample04_contenar'
+    
+    # コンテナ内のワーキングディレクトリ
+    working_dir: '/projects'
+    
+    # コンテナを終了させたくない場合に設定
+    tty: true
+    ports:
+      - 80:80
+    
+    # ローカルフォルダとコンテナ内のマウントディレクトリの関連づけ
+    volumes:
+      - ./projects:/projects
+    # PORT開放
+    expose:
+      - "80"
+
