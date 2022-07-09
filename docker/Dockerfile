@@ -5,6 +5,7 @@ USER root
 ENV DOCKER_DIR="./docker"
 ENV COPY_SOURCE_DIR="./projects"
 ENV SOURCE_DIR="./projects"
+ENV PROJECT_NAME="sample04_prj"
 
 RUN apt-get update
 RUN apt-get -y install locales && \
@@ -16,16 +17,16 @@ ENV TZ JST-9
 ENV TERM xterm
 RUN apt-get install -y vim less
 
-# �R���e�i���փR�s�[
+# コンテナ側へコピー
 COPY $DOCKER_DIR/requirements.txt requirements.txt
 
-# �\�[�X�𐳎��ꏊ�փR�s�[
-# COPY $COPY_SOURCE_DIR $SOURCE_DIR
+# ソースを正式場所へコピー
+COPY $COPY_SOURCE_DIR $SOURCE_DIR
 
-# python ���C�u�����C���X�g�[��
+# python ライブラリインストール
 RUN pip install -r ./requirements.txt
 
-# WORKDIR $SOURCE_DIR/myproject
-# CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
+WORKDIR $SOURCE_DIR/$PROJECT_NAME
+CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
 
 

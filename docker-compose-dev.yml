@@ -29,7 +29,7 @@ services:
     container_name: 'ecr-sample04_contenar'
     
     # コンテナ内のワーキングディレクトリ
-    working_dir: '/projects'
+    # working_dir: '/projects'
     
     # コンテナを終了させたくない場合に設定
     tty: true
