@@ -11,9 +11,7 @@ services:
     # このフォルダにDockerファイルを置く
     build:
         context: .
-        dockerfile: ./Dockerfile
-        #dockerfile: ./docker/Dockerfile
-        #dockerfile: ./docker_srv/Dockerfile.local.dev
+        dockerfile: ./docker/Dockerfile
 
     # DEV UWSGI起動
     # command: uwsgi --socket :8001 --chdir /workspace/deposit_srv --wsgi-file deposit_srv/wsgi.py
